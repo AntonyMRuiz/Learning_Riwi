@@ -7,4 +7,5 @@ Initial dependecies:
 Create a database with MySQL:
   (Workbech command)
 ![image](https://github.com/AntonyMRuiz/Learning_Riwi/assets/147773928/847fa196-72f2-4c5c-8d04-2d4955d171c8)
- -Port: 3306
+
+  -Port: 3306
