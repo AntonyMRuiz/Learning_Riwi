@@ -1,5 +1,6 @@
 package com.riwi.learningRiwi.domain.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.riwi.learningRiwi.utils.enums.RoleUser;
@@ -55,7 +56,8 @@ public class User {
         cascade = CascadeType.ALL,
         orphanRemoval = true
     )
-    private List<Enrollment> enrollments;
+    @Builder.Default
+    private List<Enrollment> enrollments = new ArrayList<>();
 
     @OneToMany(
         mappedBy = "student",
@@ -63,7 +65,8 @@ public class User {
         cascade = CascadeType.ALL,
         orphanRemoval = true
     )
-    private List<Submission> submissions; 
+    @Builder.Default
+    private List<Submission> submissions = new ArrayList<>(); 
 
     @OneToMany(
         mappedBy = "instructor",
@@ -71,6 +74,7 @@ public class User {
         cascade = CascadeType.ALL,
         orphanRemoval = true
     )
-    private List<Course> courses;
+    @Builder.Default
+    private List<Course> courses = new ArrayList<>();
 
 }
