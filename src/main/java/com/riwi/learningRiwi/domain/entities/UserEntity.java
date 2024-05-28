@@ -18,7 +18,9 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity(name = "user")
 @Data
@@ -84,6 +86,8 @@ public class UserEntity {
         orphanRemoval = false
     )
     @Builder.Default
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Message> messagesSender = new ArrayList<>();
 
     @OneToMany(
@@ -93,6 +97,8 @@ public class UserEntity {
         orphanRemoval = false
     )
     @Builder.Default
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Message> messagesReciver = new ArrayList<>();
 
 }

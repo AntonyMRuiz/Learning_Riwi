@@ -15,7 +15,9 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity(name = "course")
 @Data
@@ -40,6 +42,8 @@ public class Course {
         orphanRemoval = false,
         cascade = CascadeType.ALL
     )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Enrollment> enrollments;
 
     @OneToMany(
@@ -48,6 +52,8 @@ public class Course {
         orphanRemoval = false,
         cascade = CascadeType.ALL
     )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Lesson> lessons;
 
     @OneToMany(
@@ -56,6 +62,8 @@ public class Course {
         orphanRemoval = false,
         cascade = CascadeType.ALL
     )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Message> messages;
 
     @ManyToOne(fetch = FetchType.LAZY)

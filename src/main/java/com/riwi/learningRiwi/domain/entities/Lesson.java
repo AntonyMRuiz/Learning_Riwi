@@ -16,7 +16,9 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity(name = "lesson")
 @Data
@@ -40,6 +42,8 @@ public class Lesson {
         mappedBy = "lesson",
         cascade = CascadeType.ALL, 
         orphanRemoval = false)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Activity> activities;
 
     @ManyToOne(fetch = FetchType.EAGER)
