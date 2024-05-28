@@ -7,6 +7,7 @@ import com.riwi.learningRiwi.utils.enums.RoleUser;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class User {
     @Column(length = 100)
     private String lastName;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RoleUser role;
 
