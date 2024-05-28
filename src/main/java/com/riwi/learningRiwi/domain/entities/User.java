@@ -1,13 +1,18 @@
 package com.riwi.learningRiwi.domain.entities;
 
+import java.util.List;
+
 import com.riwi.learningRiwi.utils.enums.RoleUser;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,5 +47,29 @@ public class User {
     @Enumerated
     @Column(nullable = false)
     private RoleUser role;
+
+    @OneToMany(
+        mappedBy = "student",
+        fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Enrollment> enrollments;
+
+    @OneToMany(
+        mappedBy = "student",
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Submission> submissions; 
+
+    @OneToMany(
+        mappedBy = "instructor",
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Course> courses;
 
 }
