@@ -40,14 +40,14 @@ public class Message {
         name = "sender_id",
         referencedColumnName = "id"
     )
-    private User sender;
+    private UserEntity sender;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
         name = "receiver_id",
         referencedColumnName = "id"
     )
-    private User receiver;
+    private UserEntity receiver;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(

@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 import com.riwi.learningRiwi.api.dtos.requests.UserRequest;
 import com.riwi.learningRiwi.api.dtos.responses.UserBaseResponse;
 import com.riwi.learningRiwi.api.dtos.responses.UserFullResponse;
-import com.riwi.learningRiwi.domain.entities.User;
+import com.riwi.learningRiwi.domain.entities.UserEntity;
 import com.riwi.learningRiwi.domain.repositories.UserRepository;
 import com.riwi.learningRiwi.infractructure.abstract_services.IUserService;
+import com.riwi.learningRiwi.infractructure.helpers.HelperService;
 
 import lombok.AllArgsConstructor;
 
@@ -22,7 +23,7 @@ public class UserService implements IUserService {
 
     @Override
     public UserFullResponse create(UserRequest request) {
-        User user = this.resquestToEntity(request);
+        UserEntity user = this.resquestToEntity(request);
         return this.entityToResponse(this.repository.save(user));
     }
 
@@ -33,7 +34,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findById(String id) {
+    public UserEntity findById(String id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
@@ -57,19 +58,29 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User resquestToEntity(UserRequest request) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resquestToEntity'");
+    public UserEntity resquestToEntity(UserRequest request) {
+        return UserEntity.builder()
+                    .name(request.getName())
+                    .lastName(request.getLastName())
+                    .username(request.getUsername())
+                    .password(request.getPassword())
+                    .email(request.getEmail())
+                    .role(request.getRole())
+                    .build();
     }
 
     @Override
-    public UserFullResponse entityToResponse(User entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'entityToResponse'");
+    public UserFullResponse entityToResponse(UserEntity entity) {
+        return UserFullResponse.builder()
+                .email(entity.getEmail())
+                // .enrollments(HelperService.transformList(
+                //     entity.getCourses(), 
+                //     entity -> ))
+                .build();
     }
 
     @Override
-    public UserBaseResponse entityToBaseResponse(User entity) {
+    public UserBaseResponse entityToBaseResponse(UserEntity entity) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'entityToBaseResponse'");
     }

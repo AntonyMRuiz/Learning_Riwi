@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -54,7 +54,7 @@ public class User {
         mappedBy = "student",
         fetch = FetchType.EAGER,
         cascade = CascadeType.ALL,
-        orphanRemoval = true
+        orphanRemoval = false
     )
     @Builder.Default
     private List<Enrollment> enrollments = new ArrayList<>();
@@ -63,7 +63,7 @@ public class User {
         mappedBy = "student",
         fetch = FetchType.LAZY,
         cascade = CascadeType.ALL,
-        orphanRemoval = true
+        orphanRemoval = false
     )
     @Builder.Default
     private List<Submission> submissions = new ArrayList<>(); 
@@ -72,9 +72,27 @@ public class User {
         mappedBy = "instructor",
         fetch = FetchType.LAZY,
         cascade = CascadeType.ALL,
-        orphanRemoval = true
+        orphanRemoval = false
     )
     @Builder.Default
     private List<Course> courses = new ArrayList<>();
+
+    @OneToMany(
+        mappedBy = "sender",
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        orphanRemoval = false
+    )
+    @Builder.Default
+    private List<Message> messagesSender = new ArrayList<>();
+
+    @OneToMany(
+        mappedBy = "receiver",
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        orphanRemoval = false
+    )
+    @Builder.Default
+    private List<Message> messagesReciver = new ArrayList<>();
 
 }

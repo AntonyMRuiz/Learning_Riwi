@@ -39,7 +39,7 @@ public class Lesson {
         fetch = FetchType.LAZY,
         mappedBy = "lesson",
         cascade = CascadeType.ALL, 
-        orphanRemoval = true)
+        orphanRemoval = false)
     private List<Activity> activities;
 
     @ManyToOne(fetch = FetchType.EAGER)

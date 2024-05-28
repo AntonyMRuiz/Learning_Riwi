@@ -3,7 +3,6 @@ package com.riwi.learningRiwi.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +23,7 @@ public class UserController implements BaseController<UserRequest, UserFullRespo
 
     @PostMapping
     public ResponseEntity<UserFullResponse> create(
-            @Validated @RequestBody UserRequest request) {
+            @RequestBody UserRequest request) {
         return ResponseEntity.ok(this.service.create(request));
     }
 

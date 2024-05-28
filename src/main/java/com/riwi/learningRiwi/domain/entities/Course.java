@@ -37,7 +37,7 @@ public class Course {
     @OneToMany(
         mappedBy = "course",
         fetch = FetchType.LAZY,
-        orphanRemoval = true,
+        orphanRemoval = false,
         cascade = CascadeType.ALL
     )
     private List<Enrollment> enrollments;
@@ -45,7 +45,7 @@ public class Course {
     @OneToMany(
         mappedBy = "course",
         fetch = FetchType.LAZY,
-        orphanRemoval = true,
+        orphanRemoval = false,
         cascade = CascadeType.ALL
     )
     private List<Lesson> lessons;
@@ -53,7 +53,7 @@ public class Course {
     @OneToMany(
         mappedBy = "course",
         fetch = FetchType.LAZY,
-        orphanRemoval = true,
+        orphanRemoval = false,
         cascade = CascadeType.ALL
     )
     private List<Message> messages;
@@ -63,5 +63,5 @@ public class Course {
         name = "instructor_id",
         referencedColumnName = "id"
     )
-    private User instructor;
+    private UserEntity instructor;
 }

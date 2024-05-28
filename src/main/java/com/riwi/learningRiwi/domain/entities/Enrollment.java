@@ -33,7 +33,7 @@ public class Enrollment {
     @JoinColumn(
         name = "student_id", 
         referencedColumnName = "id")
-    private User student;
+    private UserEntity student;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
